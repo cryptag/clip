@@ -12,7 +12,7 @@ var urlSuffix = '/cryptagd';
 function cryptagdDownloadURLFromOSArch(os, arch) {
     switch (os) {
     case 'win':
-        return urlPrefix + 'windows/386' + urlSuffix;
+        return urlPrefix + 'windows/386' + urlSuffix + '.exe';
     case 'mac':
         return urlPrefix + 'darwin/amd64' + urlSuffix;
     case 'linux':
