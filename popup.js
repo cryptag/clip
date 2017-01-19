@@ -6,6 +6,20 @@ function onPageDetailsReceived(pageDetails)  {
     document.getElementById('summary').innerText = pageDetails.summary;
 }
 
+var urlPrefix = 'https://www.cryptag.org/files/';
+var urlSuffix = '/cryptagd';
+
+function cryptagdDownloadURLFromOSArch(os, arch) {
+    switch (os) {
+    case 'win':
+        return urlPrefix + 'windows/386' + urlSuffix;
+    case 'mac':
+        return urlPrefix + 'darwin/amd64' + urlSuffix;
+    case 'linux':
+        return urlPrefix + 'linux/amd64' + urlSuffix;
+    }
+}
+
 // Global reference to the status display SPAN
 var statusDisplay = null;
 
@@ -56,7 +70,21 @@ function addBookmark() {
                 window.setTimeout(window.close, 1000);
             } else {
                 // Show what went wrong
-                statusDisplay.innerHTML = 'Make sure cryptagd is running! Error saving: ' + xhr.statusText;
+                if (xhr.statusText) {
+                    statusDisplay.innerHTML = 'Error saving: ' + xhr.statusText;
+                    return
+                }
+
+                // Get OS- and arch-specific link to download cryptagd
+                chrome.runtime.getPlatformInfo(function(info) {
+                    var url = cryptagdDownloadURLFromOSArch(info.os, info.arch);
+
+                    // Suggest cryptagd download link
+                    statusDisplay.innerHTML = 'Error saving! Make sure cryptagd' +
+                        ' is running locally on your computer for this extension to' +
+                        ' talk to. You can download cryptagd here:' +
+                        ' <a href="' + url +'" target="_blank">' + url + '</a>.';
+                });
             }
         }
     };
