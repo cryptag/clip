@@ -44,7 +44,7 @@ function addBookmark() {
     var plaintags = ['title:'+title, 'url:'+url, 'type:text',
                      'type:md', 'type:webclip', 'app:cryptagclip'];
 
-    var fields = tags.trim().replace(',', ' ').split(/\s+/g);
+    var fields = tags.trim().replace(/,/g, ' ').split(/\s+/g);
     for (let i = 0; i < fields.length; i++) {
         if (fields[i] !== '') {
             plaintags.push(fields[i]);

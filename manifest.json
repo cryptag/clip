@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "CrypTag Clip",
     "description": "Save details of the current page to cryptagd, a local, trusted, secure API",
-    "version": "0.2",
+    "version": "0.3",
     "background": {
         "scripts": ["event.js"],
         "persistent": false
