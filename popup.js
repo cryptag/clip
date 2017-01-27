@@ -42,7 +42,7 @@ function addBookmark() {
     var tags = document.getElementById('tags').value;
 
     var plaintags = ['title:'+title, 'url:'+url, 'type:text',
-                     'type:webclip', 'app:cryptagclip'];
+                     'type:md', 'type:webclip', 'app:cryptagclip'];
 
     var fields = tags.trim().replace(',', ' ').split(/\s+/g);
     for (let i = 0; i < fields.length; i++) {

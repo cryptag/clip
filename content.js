@@ -2,5 +2,5 @@
 chrome.runtime.sendMessage({
     'title': document.title,
     'url': window.location.href,
-    'summary': window.getSelection().toString()
+    'summary': window.getSelection().toString() ? '> ' + window.getSelection().toString() + '\n\n' : ''
 });
