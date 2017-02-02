@@ -41,6 +41,9 @@ function addBookmark() {
     var summary = document.getElementById('summary').value;
     var tags = document.getElementById('tags').value;
 
+    var sel = document.getElementById('backend');
+    var backend = sel.options[sel.selectedIndex].text;
+
     var plaintags = ['title:'+title, 'url:'+url, 'type:text',
                      'type:md', 'type:webclip', 'app:cryptagclip'];
 
@@ -58,6 +61,7 @@ function addBookmark() {
 
     // Set correct header for form data
     xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-Backend', backend);
 
     // Handle request state change events
     xhr.onreadystatechange = function() {
