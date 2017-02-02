@@ -70,6 +70,13 @@ function addBookmark() {
                 window.setTimeout(window.close, 1000);
             } else {
                 // Show what went wrong
+
+                if (xhr.response) {
+                    var errJSON = JSON.parse(xhr.response).error || xhr.statusText;
+                    statusDisplay.innerHTML = 'Error saving: ' + errJSON;
+                    return
+                }
+
                 if (xhr.statusText) {
                     statusDisplay.innerHTML = 'Error saving: ' + xhr.statusText;
                     return
