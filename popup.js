@@ -42,7 +42,7 @@ function addBookmark() {
     var tags = document.getElementById('tags').value;
 
     var sel = document.getElementById('backend');
-    var backend = sel.options[sel.selectedIndex].text;
+    var backend = (sel.options[sel.selectedIndex] || {}).text || '';
 
     var plaintags = ['title:'+title, 'url:'+url, 'type:text',
                      'type:md', 'type:webclip', 'app:cryptagclip'];
