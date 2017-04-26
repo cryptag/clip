@@ -55,7 +55,7 @@ function addBookmark() {
     }
 
     var row = {
-        unencrypted: btoa(summary),
+        unencrypted: btoa(unescape(encodeURIComponent(summary))),
         plaintags: plaintags
     }
 
